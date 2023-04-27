@@ -4,16 +4,22 @@ let synopsisEl = document.getElementById("synopsis");
 let reviewsEl = document.getElementById("reviews");
 let addInfoEl = document.getElementById("additional-info");
 let episodesEl = document.getElementById("episodes");
-
 let searchButtonEl = document.getElementById("search-button");
 let randomButtonEl = document.getElementById("random-button");
 
-getAnimeByImage();
+let libraryItems = {};
+
+init();
 
 randomButtonEl.addEventListener("click", function(event){
     event.preventDefault();
     getRandomAnime();
 });
+
+function init(){
+    libraryItems = loadFromLocalStorage("library");
+    getAnimeByImage();
+}
 
 function getRandomAnime(){
     fetch("https://kitsu.io/api/edge/anime/" + Math.floor((Math.random() * 12000) + 1))
@@ -51,4 +57,19 @@ function getAnimeByImage(){
     }).catch(function(error){
         console.log(error);
     });    
+}
+
+function saveToLocalStorage(type, toSave){
+    localStorage.setItem(type, JSON.stringify(toSave));
+}
+
+function loadFromLocalStorage(type){
+    let storedItem = JSON.parse(localStorage.getItem(type));
+
+    if(storedItem !== null){
+        return storedItem;
+    }
+    else{
+        console.log("Could not retrieve stored items!");
+    }
 }
