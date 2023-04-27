@@ -4,14 +4,18 @@ let synopsisEl = document.getElementById("synopsis");
 let reviewsEl = document.getElementById("reviews");
 let addInfoEl = document.getElementById("additional-info");
 let episodesEl = document.getElementById("episodes");
+
 let searchImageButtonEl = document.getElementById("search-image-button");
+let searchImageTextEl = document.getElementById("search-image-text");
+
 let searchNameButtonEl = document.getElementById("search-name-button");
-let searchNameTextEl = document.getElementById("search-name");
+let searchNameTextEl = document.getElementById("search-name-text");
+
 let randomButtonEl = document.getElementById("random-button");
 let addToLibraryButtonEl = document.getElementById("add-library");
 
+
 let libraryItems = {id: "", title: ""};
-let imageSearchURL = "https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg";
 
 init();
 
@@ -28,23 +32,26 @@ searchNameButtonEl.addEventListener("click", function(event){
     searchNameTextEl.value = "";
 });
 
-/* These throw errors since the elements don't exist on page
+searchImageButtonEl.addEventListener("click", function(event){
+    event.preventDefault();
+    console.log("--Searched for image at: " + searchImageTextEl.value);
+    getAnimeByImage(searchImageTextEl.value);
+});
+
+/* This throws an error since the button is not in the html currently
+
 addToLibraryButtonEl.addEventListener("click", function(event){
     event.preventDefault();
     addToLibrary();
 });
 
-searchImageButtonEl.addEventListener("click", function(event){
-    event.preventDefault();
-    getAnimeByImage();
-});
 */
 
 function init(){
     libraryItems = loadFromLocalStorage("library");
 
     //For testing
-    getAnimeByImage();
+    getAnimeByImage("https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg");
 }
 
 function getRandomAnime(){
@@ -69,7 +76,7 @@ function getRandomAnime(){
     });
 }
 
-function getAnimeByImage(){
+function getAnimeByImage(imageSearchURL){
     fetch(`https://api.trace.moe/search?anilistInfo&url=${encodeURIComponent(imageSearchURL)}`
     ).then(function(response){
         console.log("----Image Anime Response----");
