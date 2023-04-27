@@ -14,8 +14,8 @@ let searchNameTextEl = document.getElementById("search-name-text");
 let randomButtonEl = document.getElementById("random-button");
 let addToLibraryButtonEl = document.getElementById("add-library");
 
-
 let libraryItems = {id: "", title: "", posterURL: ""};
+
 
 init();
 
@@ -51,7 +51,7 @@ function init(){
     libraryItems = loadFromLocalStorage("library");
 
     //For testing
-    getAnimeByImage("https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg");
+    //getAnimeByImage("https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg");
 }
 
 function getRandomAnime(){
@@ -120,6 +120,9 @@ function getAnimeByName(searchName){
 }
 
 function buildShowDisplay(showRawInfo){
+    sessionStorage.setItem("rawShow", JSON.stringify(showRawInfo));
+    location.assign("directory.html");
+/*
     let showId = showRawInfo.data.id;
     let showTitle = showRawInfo.data.attributes.canonicalTitle;
     let showSynopsis = showRawInfo.data.attributes.description;
@@ -132,6 +135,7 @@ function buildShowDisplay(showRawInfo){
 
     //Build out show display page here. Make sure to add "data-" elements with the info for each element in order to save them to library. At least the show title/ID and poster link
     //Be aware that certain elements (ie. reviews) may be null
+*/
 }
 
 function buildLibraryDisplay(){
@@ -147,7 +151,7 @@ function addToLibrary(id, title, poster){
     libraryItems.id.push() = id;
     libraryItems.title.push() = title;
     libraryItems.posterURL.push() = poster;
-    
+
     saveToLocalStorage("library", libraryItems);
 }
 
