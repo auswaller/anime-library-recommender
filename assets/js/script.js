@@ -15,7 +15,7 @@ let randomButtonEl = document.getElementById("random-button");
 let addToLibraryButtonEl = document.getElementById("add-library");
 
 
-let libraryItems = {id: "", title: ""};
+let libraryItems = {id: "", title: "", posterURL: ""};
 
 init();
 
@@ -143,9 +143,11 @@ function buildLibraryDisplay(){
     }
 }
 
-function addToLibrary(id, title){
+function addToLibrary(id, title, poster){
     libraryItems.id.push() = id;
     libraryItems.title.push() = title;
+    libraryItems.posterURL.push() = poster;
+    
     saveToLocalStorage("library", libraryItems);
 }
 
