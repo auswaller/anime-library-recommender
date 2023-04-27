@@ -12,7 +12,6 @@ let addToLibraryButtonEl = document.getElementById("add-library");
 
 let libraryItems = {id: "", title: ""};
 let imageSearchURL = "https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg";
-let searchName = "cowboy bebop";
 
 init();
 
@@ -24,7 +23,7 @@ randomButtonEl.addEventListener("click", function(event){
 
 searchNameButtonEl.addEventListener("click", function(event){
     event.preventDefault();
-    console.log("Searched for name: " + searchNameTextEl.value);
+    console.log("--Searched manually for: " + searchNameTextEl.value);
     getAnimeByName(searchNameTextEl.value);
     searchNameTextEl.value = "";
 });
@@ -63,7 +62,7 @@ function getRandomAnime(){
         console.log("----Random Anime Data----");
         console.log(data);
 
-        buildShowDisplay(data, "random");
+        buildShowDisplay(data);
     }).catch(function(error){
         console.log(error);
         getRandomAnime();
@@ -101,49 +100,31 @@ function getAnimeByName(searchName){
             return response.json();
         }
 
-        throw new Error("Something went wrong with finding an anime. Try the search again");
+        throw new Error("Something went wrong with finding an anime by name. Try the search again");
     }).then(function(data){
         console.log("----Search Anime Data----");
         console.log(data);
 
-        buildShowDisplay(data.data[0], "name");
+        let dataToSend = {data: data.data[0]};
+        buildShowDisplay(dataToSend);
     }).catch(function(error){
         console.log(error);
     });
 }
 
-function buildShowDisplay(showRawInfo, whereFrom){
-    console.log(showRawInfo);
-    let showId;
-    let showTitle;
-    let showSynopsis;
-    let showPoster;
-    let showReviews;
-    let showEpisodes;
-    let showYoutubeID;
-
-    if(whereFrom === "random"){
-        showId = showRawInfo.data.id;
-        showTitle = showRawInfo.data.attributes.canonicalTitle;
-        showSynopsis = showRawInfo.data.attributes.description;
-        showPoster = showRawInfo.data.attributes.posterImage.large;
-        showReviews = showRawInfo.data.attributes.averageRating;
-        showEpisodes = showRawInfo.data.attributes.episodeCount;
-        showYoutubeID = showRawInfo.data.attributes.youtubeVideoId; //Add "https://www.youtube.com/watch?v=" before this to get the full url
-    }
-    else{
-        showId = showRawInfo.id;
-        showTitle = showRawInfo.attributes.canonicalTitle;
-        showSynopsis = showRawInfo.attributes.description;
-        showPoster = showRawInfo.attributes.posterImage.large;
-        showReviews = showRawInfo.attributes.averageRating;
-        showEpisodes = showRawInfo.attributes.episodeCount;
-        showYoutubeID = showRawInfo.attributes.youtubeVideoId; //Add "https://www.youtube.com/watch?v=" before this to get the full url
-    }
+function buildShowDisplay(showRawInfo){
+    let showId = showRawInfo.data.id;
+    let showTitle = showRawInfo.data.attributes.canonicalTitle;
+    let showSynopsis = showRawInfo.data.attributes.description;
+    let showPoster = showRawInfo.data.attributes.posterImage.large;
+    let showReviews = showRawInfo.data.attributes.averageRating;
+    let showEpisodes = showRawInfo.data.attributes.episodeCount;
+    let showYoutubeID = showRawInfo.data.attributes.youtubeVideoId; //Add "https://www.youtube.com/watch?v=" before this to get the full url
 
     console.log(showTitle + " | " + showId + " | " + showSynopsis + " | " + showPoster + " | " + showReviews + " | " + showEpisodes + " | " + showYoutubeID);
 
-    //Build out show display page here. Make sure to add "data-" elements with the info for each element in order to save them to library. At least the show title and ID
+    //Build out show display page here. Make sure to add "data-" elements with the info for each element in order to save them to library. At least the show title/ID and poster link
+    //Be aware that certain elements (ie. reviews) may be null
 }
 
 function buildLibraryDisplay(){
