@@ -3,7 +3,27 @@
 }
 
 .searchBar{
+    width: 25%;
     text-align: center;
-    width: 50%;
+    margin-bottom: 25px;
+}
+
+.searchBarContainer{
+    
+    text-align: center;
+}
+
+
+
+.navbar{
+    
+}
+
+.navbar-item img{
+    max-height: 66px;
+}
+
+.navbar-start, .navBtn{
+    align-items: center;
 }
 
