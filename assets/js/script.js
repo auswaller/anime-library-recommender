@@ -14,6 +14,9 @@ let searchNameTextEl = document.getElementById("search-name-text");
 let randomButtonEl = document.getElementById("random-button");
 let addToLibraryButtonEl = document.getElementById("add-library");
 
+let fileImageEl = document.getElementById("file-image-file");
+let fileButtonEl = document.getElementById("file-image-button");
+
 let libraryItems = {id: "", title: "", posterURL: ""};
 
 
@@ -36,6 +39,12 @@ searchImageButtonEl.addEventListener("click", function(event){
     event.preventDefault();
     console.log("--Searched for image at: " + searchImageTextEl.value);
     getAnimeByImage(searchImageTextEl.value);
+});
+
+fileButtonEl.addEventListener("click", function(event){
+    event.preventDefault();
+    console.log("--Searched for image with: " + fileImageEl.value + " " + fileImageEl.files[0]);
+    getAnimeByImageUpload(fileImageEl.files[0]);
 });
 
 /* This throws an error since the button is not in the html currently
@@ -91,10 +100,35 @@ function getAnimeByImage(imageSearchURL){
         console.log("----Image Anime Data----");
         console.log(data);
 
-        getAnimeByName(data.result[0].anilist.title.romanji);
+        getAnimeByName(data.result[0].anilist.title.english);
     }).catch(function(error){
         console.log(error);
     });    
+}
+
+function getAnimeByImageUpload(image){
+    const formData = new FormData();
+    formData.append("image", image);
+    fetch("https://api.trace.moe/search?anilistInfo&", {
+        method: "POST",
+        body: formData,
+    }).then(function(response){
+        console.log("----Image Anime Response----");
+        console.log(response);
+
+        if(response.status === 200){
+            return response.json();
+        }
+
+        throw new Error("Something went wrong with searching by image. Try the search again");
+    }).then(function(data){
+        console.log("----Image Anime Data----");
+        console.log(data);
+
+        getAnimeByName(data.result[0].anilist.title.english);
+    }).catch(function(error){
+        console.log(error);
+    });
 }
 
 function getAnimeByName(searchName){
