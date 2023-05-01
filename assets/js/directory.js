@@ -1,5 +1,10 @@
 var data = JSON.parse(sessionStorage.getItem("rawShow"));
-
+let titleEl = document.getElementById("title");
+let posterEl = document.getElementById("poster");
+let synopsisEl = document.getElementById("synopsis");
+let reviewsEl = document.getElementById("reviews");
+let addInfoEl = document.getElementById("additional-info");
+let episodesEl = document.getElementById("episodes");
 buildShowDisplay(data);
 
 function buildShowDisplay(showRawInfo){
@@ -16,4 +21,8 @@ function buildShowDisplay(showRawInfo){
 
     //Build out show display page here. Make sure to add "data-" elements with the info for each element in order to save them to library. At least the show title/ID and poster link
     //Be aware that certain elements (ie. reviews) may be null
+    posterEl.src= showPoster;
+    titleEl.innerHTML= showTitle
+    synopsisEl.innerHTML= showSynopsis
+    episodesEl.innerHTML= showEpisodes
 }
