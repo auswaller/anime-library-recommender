@@ -13,9 +13,14 @@
     Name: 
     <input type="text" id="search-name-text" name="name"><br>
     <button id="search-name-button" type="submit">Search</button><br><br>
-    Image: 
+    Image URL: 
     <input type="text" id="search-image-text" name="name"><br>
-    <button id="search-image-button" type="submit">Search</button>
+    <button id="search-image-button" type="submit">Search</button><br><br>
+    File:
+    <form action="https://api.trace.moe/search" method="POST" enctype="multipart/form-data">
+      <input id="file-image-file" type="file" name="image" />
+      <input id="file-image-button" type="submit" />
+    </form>
 
     <script src="assets/js/script.js"></script>
   </body>
