@@ -147,7 +147,7 @@ function getAnimeByName(searchName){
         console.log(data);
 
         let dataToSend = {data: data.data[0]};
-        buildShowDisplay(dataToSend);
+        goToDisplay(dataToSend);
     }).catch(function(error){
         console.log(error);
     });
