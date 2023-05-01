@@ -78,7 +78,7 @@ function getRandomAnime(){
         console.log("----Random Anime Data----");
         console.log(data);
 
-        buildShowDisplay(data);
+        goToDisplay(data);
     }).catch(function(error){
         console.log(error);
         getRandomAnime();
@@ -153,7 +153,7 @@ function getAnimeByName(searchName){
     });
 }
 
-function buildShowDisplay(showRawInfo){
+function goToDisplay(showRawInfo){
     sessionStorage.setItem("rawShow", JSON.stringify(showRawInfo));
     location.assign("directory.html");
 /*
