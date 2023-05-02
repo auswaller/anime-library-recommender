@@ -6,58 +6,67 @@
         <title>Anime Library Randomizer</title>
         <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css"/>
         <link rel="stylesheet" href="./assets/css/style.css" />
-        
     </head>
     <body>
-        <nav class="navbar is-mediu" role="navigation" aria-label="main navigation">
-            <div class="navbar-brand">
+      <nav class="navbar is-light has-shadow" role="navigation" aria-label="main navigation">
+        
+          <div class="navbar-brand">
+            <a class="navbar-item is-medium">
+              <img src="./assets/Images/ddxo0jo-96e97e47-6233-45da-913c-041b3224f5ab.png" width="50" height="50">
+            </a>
+            <a role="button" class="navbar-burger burger" aria-label="menu" aria-expanded="false" data-target="navbar-menu">
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+              <span aria-hidden="true"></span>
+            </a>
+          </div>
+          <div id="navbar-menu" class="navbar-menu">
+            <div class="navbar-start">
               <a class="navbar-item">
-                <img src="./assets/Images/ddxo0jo-96e97e47-6233-45da-913c-041b3224f5ab.png" width="50" height="150">
-              </a>
-          
-              <a role="button" class="navbar-burger" aria-label="menu" aria-expanded="false">
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
-                <span aria-hidden="true"></span>
+                Home
               </a>
             </div>
-          
-            <div class="navbar-menu">
-              <div class="navbar-start">
-                <a class="button navbar-item">
-                  Home
-                </a>
-                </div>
-              <div class="navbar-end navBtn">
-                
-                  <div class="buttons">
-                    <a class="button navbar-item">
-                      Library
-                    </a>
-                    <a class="button navbar-item">
-                      Random
-                    </a>
-                    <a class="button navbar-item" href="https://github.com/auswaller/anime-library-recommender">
-                        Repository
-                      </a>
-                  </div>
-                
+            <div class="navbar-end">
+              <div class="navbar-item">
+                <div class="buttons">
+                  <a class="button" href="./library.html">
+                    Library
+                  </a>
+                  <a class="button" id="random-button" >
+                    Random
+                  </a>
+                  <a class="button" href="https://github.com/auswaller/anime-library-recommender">
+                    Repository
+                  </a>
                 </div>
               </div>
             </div>
-          </nav>
-    
-    
-        <div class="section is-large">
+          </div>
+      </nav>
+        <div class="section is-medium contentSection">
        <div class="searchBarContainer ">
         <input class="searchBar input is-primary" placeholder = "Anime Search"></input>
        </div>
        <div class="randomBtn ">
-        <button class="button">Random</button>
+        <button class="button" id="random-button">Random</button>
        </div>
-    </div>
-
-        
+       <div class="file is-boxed">
+        <label class="file-label">
+          <input class="file-input" type="file" name="resume">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fas fa-upload"></i>
+            </span>
+            <span class="file-label">
+              Choose a file…
+            </span>
+          </span>
+        </label>
+      </div>
+      <div class="searchBtn">
+        <button class=" button searchBtnText ">Search</button>
+      </div>
+    </div> 
         <script src="./assets/js/script.js" async defer></script>
     </body>
 </html>
