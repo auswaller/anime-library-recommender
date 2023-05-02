@@ -4,7 +4,8 @@ let posterEl = document.getElementById("poster");
 let synopsisEl = document.getElementById("synopsis");
 let reviewsEl = document.getElementById("reviews");
 let addInfoEl = document.getElementById("additional-info");
-let episodesEl = document.getElementById("episodes");
+let episodesEl = document.getElementById("episode");
+let youtubeEl = document.getElementById("youtube")
 buildShowDisplay(data);
 
 function buildShowDisplay(showRawInfo){
@@ -23,6 +24,12 @@ function buildShowDisplay(showRawInfo){
     //Be aware that certain elements (ie. reviews) may be null
     posterEl.src= showPoster;
     titleEl.innerHTML= showTitle
-    synopsisEl.innerHTML= showSynopsis
-    episodesEl.innerHTML= showEpisodes
+    synopsisEl.innerHTML= showSynopsis;
+    reviewsEl.innerHTML= showReviews;
+    episodesEl.innerHTML= showEpisodes;
+    youtubeEl.href= showYoutubeID + "https://www.youtube.com/watch?v="
+
+    
+
+    
 }
