@@ -8,22 +8,37 @@
     margin-bottom: 25px;
 }
 
+.randomBtn{
+    margin-bottom: 25px;
+}
+
 .searchBarContainer{
     
     text-align: center;
 }
 
-
-
-.navbar{
-    
-}
-
 .navbar-item img{
     max-height: 66px;
 }
+div .file{
+    justify-content: center;
+}
 
-.navbar-start, .navBtn{
+label .file-label{
     align-items: center;
 }
+span .file-name{
+    text-align: center;
+}
+
+.searchBtn{
+    text-align: center;
+}
+
+.searchBtnText {
+    padding-left: 76.807px;
+    padding-right: 76.807px;
+}
+
+
 
