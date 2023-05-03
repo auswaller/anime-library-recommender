@@ -1,10 +1,3 @@
-let titleEl = document.getElementById("title");
-let posterEl = document.getElementById("poster");
-let synopsisEl = document.getElementById("synopsis");
-let reviewsEl = document.getElementById("reviews");
-let addInfoEl = document.getElementById("additional-info");
-let episodesEl = document.getElementById("episodes");
-
 let searchImageButtonEl = document.getElementById("search-image-button");
 let searchImageTextEl = document.getElementById("search-image-text");
 
@@ -58,9 +51,6 @@ addToLibraryButtonEl.addEventListener("click", function(event){
 
 function init(){
     libraryItems = loadFromLocalStorage("library");
-
-    //For testing
-    //getAnimeByImage("https://images.plurk.com/32B15UXxymfSMwKGTObY5e.jpg");
 }
 
 function getRandomAnime(){
@@ -156,20 +146,6 @@ function getAnimeByName(searchName){
 function goToDisplay(showRawInfo){
     sessionStorage.setItem("rawShow", JSON.stringify(showRawInfo));
     location.assign("directory.html");
-/*
-    let showId = showRawInfo.data.id;
-    let showTitle = showRawInfo.data.attributes.canonicalTitle;
-    let showSynopsis = showRawInfo.data.attributes.description;
-    let showPoster = showRawInfo.data.attributes.posterImage.large;
-    let showReviews = showRawInfo.data.attributes.averageRating;
-    let showEpisodes = showRawInfo.data.attributes.episodeCount;
-    let showYoutubeID = showRawInfo.data.attributes.youtubeVideoId; //Add "https://www.youtube.com/watch?v=" before this to get the full url
-
-    console.log(showTitle + " | " + showId + " | " + showSynopsis + " | " + showPoster + " | " + showReviews + " | " + showEpisodes + " | " + showYoutubeID);
-
-    //Build out show display page here. Make sure to add "data-" elements with the info for each element in order to save them to library. At least the show title/ID and poster link
-    //Be aware that certain elements (ie. reviews) may be null
-*/
 }
 
 function buildLibraryDisplay(){
