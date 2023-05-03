@@ -10,7 +10,7 @@ let addToLibraryButtonEl = document.getElementById("add-library");
 let fileImageEl = document.getElementById("file-image-file");
 let fileButtonEl = document.getElementById("file-image-button");
 
-let libraryItems = {id: "", title: "", posterURL: ""};
+let libraryItems = [];
 
 
 init();
@@ -27,30 +27,27 @@ searchNameButtonEl.addEventListener("click", function(event){
     getAnimeByName(searchNameTextEl.value);
     searchNameTextEl.value = "";
 });
-
+/*
 searchImageButtonEl.addEventListener("click", function(event){
     event.preventDefault();
     console.log("--Searched for image at: " + searchImageTextEl.value);
     getAnimeByImage(searchImageTextEl.value);
 });
-
+*/
 fileButtonEl.addEventListener("click", function(event){
     event.preventDefault();
     console.log("--Searched for image with: " + fileImageEl.value + " " + fileImageEl.files[0]);
     getAnimeByImageUpload(fileImageEl.files[0]);
 });
-
-/* This throws an error since the button is not in the html currently
-
+/*
 addToLibraryButtonEl.addEventListener("click", function(event){
     event.preventDefault();
     addToLibrary();
 });
-
 */
-
 function init(){
-    libraryItems = loadFromLocalStorage("library");
+    addToLibrary("1","2","3");
+    addToLibrary("11","22","33");
 }
 
 function getRandomAnime(){
@@ -122,6 +119,10 @@ function getAnimeByImageUpload(image){
 }
 
 function getAnimeByName(searchName){
+    if(!searchName){
+        return;
+    }
+
     fetch("https://kitsu.io/api/edge/anime?filter[text]=" + searchName)
     .then(function(response){
         console.log("----Search Anime Response----");
@@ -148,34 +149,13 @@ function goToDisplay(showRawInfo){
     location.assign("directory.html");
 }
 
-function buildLibraryDisplay(){
-    libraryItems = loadFromLocalStorage("library");
-
-    //Build out library display here.
-    for(let i = 0; i < libraryItems.id.length; i++){
-
-    }
-}
-
 function addToLibrary(id, title, poster){
-    libraryItems.id.push() = id;
-    libraryItems.title.push() = title;
-    libraryItems.posterURL.push() = poster;
+    let newInfo = {id, title, poster};
+    libraryItems.push(newInfo);
 
     saveToLocalStorage("library", libraryItems);
 }
 
 function saveToLocalStorage(type, toSave){
     localStorage.setItem(type, JSON.stringify(toSave));
-}
-
-function loadFromLocalStorage(type){
-    let storedItem = JSON.parse(localStorage.getItem(type));
-
-    if(storedItem !== null){
-        return storedItem;
-    }
-    else{
-        console.log("***Could not retrieve stored items!");
-    }
 }
