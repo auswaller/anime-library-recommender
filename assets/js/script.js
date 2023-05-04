@@ -23,14 +23,12 @@ randomButtonEl.addEventListener("click", function(event){
 
 searchNameButtonEl.addEventListener("click", function(event){
     event.preventDefault();
-    console.log("--Searched manually for: " + searchNameTextEl.value);
     getAnimeByName(searchNameTextEl.value);
     searchNameTextEl.value = "";
 });
 
 fileButtonEl.addEventListener("click", function(event){
     event.preventDefault();
-    console.log("--Searched for image with: " + fileImageEl.value + " " + fileImageEl.files[0]);
     getAnimeByImageUpload(fileImageEl.files[0]);
 });
 
@@ -41,18 +39,12 @@ function init(){
 function getRandomAnime(){
     fetch("https://kitsu.io/api/edge/anime/" + Math.floor((Math.random() * 12000) + 1))
     .then(function(response){
-        console.log("----Random Anime Response----");
-        console.log(response);
-
         if(response.status === 200){
             return response.json();
         }
 
         throw new Error("Something went wrong with finding a random anime. Trying the search again");
     }).then(function(data){
-        console.log("----Random Anime Data----");
-        console.log(data);
-
         goToDisplay(data);
     }).catch(function(error){
         console.log(error);
@@ -67,18 +59,12 @@ function getAnimeByImageUpload(image){
         method: "POST",
         body: formData,
     }).then(function(response){
-        console.log("----Image Anime Response----");
-        console.log(response);
-
         if(response.status === 200){
             return response.json();
         }
 
         throw new Error("Something went wrong with searching by image. Try the search again");
     }).then(function(data){
-        console.log("----Image Anime Data----");
-        console.log(data);
-
         getAnimeByName(data.result[0].anilist.title.english);
     }).catch(function(error){
         console.log(error);
@@ -92,18 +78,12 @@ function getAnimeByName(searchName){
 
     fetch("https://kitsu.io/api/edge/anime?filter[text]=" + searchName)
     .then(function(response){
-        console.log("----Search Anime Response----");
-        console.log(response);
-
         if(response.status === 200){
             return response.json();
         }
 
         throw new Error("Something went wrong with finding an anime by name. Try the search again");
     }).then(function(data){
-        console.log("----Search Anime Data----");
-        console.log(data);
-
         let dataToSend = {data: data.data[0]};
         goToDisplay(dataToSend);
     }).catch(function(error){

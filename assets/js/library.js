@@ -74,18 +74,12 @@ function goToDisplay(showRawInfo){
 function getRandomAnime(){
     fetch("https://kitsu.io/api/edge/anime/" + Math.floor((Math.random() * 12000) + 1))
     .then(function(response){
-        console.log("----Random Anime Response----");
-        console.log(response);
-
         if(response.status === 200){
             return response.json();
         }
 
         throw new Error("Something went wrong with finding a random anime. Trying the search again");
     }).then(function(data){
-        console.log("----Random Anime Data----");
-        console.log(data);
-
         goToDisplay(data);
     }).catch(function(error){
         console.log(error);
