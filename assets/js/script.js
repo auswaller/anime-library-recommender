@@ -86,14 +86,24 @@ function goToDisplay(showRawInfo){
     location.assign("directory.html");
 }
 
-document.addEventListener('DOMContentLoaded', () => {
-    const navbarBurger = document.querySelector('.navbar-burger');
-    navbarBurger.addEventListener('click', () => {
-      navbarBurger.classList.toggle('is-active');
-      document.getElementById(navbarBurger.dataset.target).classList.toggle('is-active');
-    });
+// document.addEventListener('DOMContentLoaded', () => {
+//     const navbarBurger = document.querySelector('.navbar-burger');
+//     navbarBurger.addEventListener('click', () => {
+//       navbarBurger.classList.toggle('is-active');
+//       document.getElementById(navbarBurger.dataset.target).classList.toggle('is-active');
+//     });
   
-  });
+//   });
+
+function burgerMenuClick() {
+    const navbarBurger = document.querySelector('.navbar-burger');
+    navbarBurger.classList.toggle('is-active');
+    document.getElementById(navbarBurger.dataset.target).classList.toggle('is-active');
+    
+    // navbarBurger.addEventListener('click', () => {
+        
+    // });
+}
   
   
  
