@@ -52,7 +52,7 @@ function buildLibraryDisplay(){
         titleP.innerHTML = libraryItems[i].title;
 
         let columnDiv = document.createElement("div");
-        columnDiv.setAttribute("class", "column is-one-third-mobile is-one-fifth-desktop ");
+        columnDiv.setAttribute("class", "column is-one-fifth-desktop is-one-third-tablet");
 
         cardFigure.appendChild(cardImg);
         cardImgDiv.appendChild(cardFigure);
@@ -92,3 +92,14 @@ function getRandomAnime(){
         getRandomAnime();
     });
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const navbarBurger = document.querySelector('.navbar-burger');
+    navbarBurger.addEventListener('click', () => {
+      navbarBurger.classList.toggle('is-active');
+      document.getElementById(navbarBurger.dataset.target).classList.toggle('is-active');
+    });
+  
+  });
+  
