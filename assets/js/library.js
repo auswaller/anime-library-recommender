@@ -2,7 +2,7 @@ let libraryItems = [];
 let libraryEl = document.getElementById("library-container");
 let randomButtonEl = document.getElementById("random-button");
 
-libraryItems = loadFromLocalStorage("library");
+libraryItems = loadFromLocalStorage("library") || [];
 buildLibraryDisplay();
 
 randomButtonEl.addEventListener("click", function(event){
