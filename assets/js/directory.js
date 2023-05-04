@@ -90,12 +90,21 @@ function getRandomAnime(){
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
+// document.addEventListener('DOMContentLoaded', () => {
+//     const navbarBurger = document.querySelector('.navbar-burger');
+//     navbarBurger.addEventListener('click', () => {
+//       navbarBurger.classList.toggle('is-active');
+//       document.getElementById(navbarBurger.dataset.target).classList.toggle('is-active');
+//     });
+  
+//   });
+
+function burgerMenuClick() {
     const navbarBurger = document.querySelector('.navbar-burger');
-    navbarBurger.addEventListener('click', () => {
-      navbarBurger.classList.toggle('is-active');
-      document.getElementById(navbarBurger.dataset.target).classList.toggle('is-active');
-    });
-  
-  });
-  
+    navbarBurger.classList.toggle('is-active');
+    document.getElementById(navbarBurger.dataset.target).classList.toggle('is-active');
+    
+    // navbarBurger.addEventListener('click', () => {
+        
+    // });
+}
