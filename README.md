@@ -20,4 +20,8 @@ https://auswaller.github.io/anime-library-recommender/index.html
 
 ## Working Display
 
+![image](https://user-images.githubusercontent.com/127269326/236352976-b2c3dcbd-805f-4067-a348-a6e55af2fbd1.png)
 
+![image](https://user-images.githubusercontent.com/127269326/236352995-e8ea1482-5f67-47db-97ab-a37e9404df76.png)
+
+![image](https://user-images.githubusercontent.com/127269326/236353020-01cd2d1b-0741-48d5-8add-7e3ad7459f26.png)
