@@ -96,3 +96,14 @@ function getRandomAnime(){
         getRandomAnime();
     });
 }
+
+
+document.addEventListener('DOMContentLoaded', () => {
+    const navbarBurger = document.querySelector('.navbar-burger');
+    navbarBurger.addEventListener('click', () => {
+      navbarBurger.classList.toggle('is-active');
+      document.getElementById(navbarBurger.dataset.target).classList.toggle('is-active');
+    });
+  
+  });
+  
