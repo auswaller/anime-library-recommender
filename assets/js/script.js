@@ -27,27 +27,15 @@ searchNameButtonEl.addEventListener("click", function(event){
     getAnimeByName(searchNameTextEl.value);
     searchNameTextEl.value = "";
 });
-/*
-searchImageButtonEl.addEventListener("click", function(event){
-    event.preventDefault();
-    console.log("--Searched for image at: " + searchImageTextEl.value);
-    getAnimeByImage(searchImageTextEl.value);
-});
-*/
+
 fileButtonEl.addEventListener("click", function(event){
     event.preventDefault();
     console.log("--Searched for image with: " + fileImageEl.value + " " + fileImageEl.files[0]);
     getAnimeByImageUpload(fileImageEl.files[0]);
 });
-/*
-addToLibraryButtonEl.addEventListener("click", function(event){
-    event.preventDefault();
-    addToLibrary();
-});
-*/
+
 function init(){
-    addToLibrary("1","2","3");
-    addToLibrary("11","22","33");
+    libraryItems = loadFromLocalStorage("library");
 }
 
 function getRandomAnime(){
@@ -70,27 +58,6 @@ function getRandomAnime(){
         console.log(error);
         getRandomAnime();
     });
-}
-
-function getAnimeByImage(imageSearchURL){
-    fetch(`https://api.trace.moe/search?anilistInfo&url=${encodeURIComponent(imageSearchURL)}`
-    ).then(function(response){
-        console.log("----Image Anime Response----");
-        console.log(response);
-
-        if(response.status === 200){
-            return response.json();
-        }
-
-        throw new Error("Something went wrong with searching by image. Try the search again");
-    }).then(function(data){
-        console.log("----Image Anime Data----");
-        console.log(data);
-
-        getAnimeByName(data.result[0].anilist.title.english);
-    }).catch(function(error){
-        console.log(error);
-    });    
 }
 
 function getAnimeByImageUpload(image){
@@ -149,8 +116,8 @@ function goToDisplay(showRawInfo){
     location.assign("directory.html");
 }
 
-function addToLibrary(id, title, poster){
-    let newInfo = {id, title, poster};
+function addToLibrary(title, poster){
+    let newInfo = {title, poster};
     libraryItems.push(newInfo);
 
     saveToLocalStorage("library", libraryItems);
@@ -158,4 +125,15 @@ function addToLibrary(id, title, poster){
 
 function saveToLocalStorage(type, toSave){
     localStorage.setItem(type, JSON.stringify(toSave));
+}
+
+function loadFromLocalStorage(type){
+    let storedItem = JSON.parse(localStorage.getItem(type));
+
+    if(storedItem !== null){
+        return storedItem;
+    }
+    else{
+        console.log("Could not retrieve stored items!");
+    }
 }
