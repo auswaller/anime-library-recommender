@@ -39,7 +39,7 @@ function buildShowDisplay(showRawInfo){
     let showPoster = showRawInfo.data.attributes.posterImage.large;
     let showReviews = showRawInfo.data.attributes.averageRating;
     let showYoutubeID = showRawInfo.data.attributes.youtubeVideoId;
-    //console.log(showTitle + " | " + showId + " | " + showSynopsis + " | " + showPoster + " | " + showReviews + " | " + showEpisodes + " | " + showYoutubeID);
+    //console.log(showTitle + " | " + showSynopsis + " | " + showPoster + " | " + showReviews + " | " + showYoutubeID);
 
     if(showPoster !== null){
         posterEl.src= showPoster;
@@ -55,6 +55,7 @@ function buildShowDisplay(showRawInfo){
     }
     if(showYoutubeID !== null){
         youtubeEl.href= "https://www.youtube.com/watch?v=" + showYoutubeID;
+        youtubeEl.innerHTML= "https://www.youtube.com/watch?v=" + showYoutubeID;
     }
 }
 
