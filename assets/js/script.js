@@ -10,12 +10,6 @@ let addToLibraryButtonEl = document.getElementById("add-library");
 let fileImageEl = document.getElementById("file-image-file");
 let fileButtonEl = document.getElementById("file-image-button");
 
-let libraryItems = [];
-
-
-init();
-
-
 randomButtonEl.addEventListener("click", function(event){
     event.preventDefault();
     getRandomAnime();
@@ -31,10 +25,6 @@ fileButtonEl.addEventListener("click", function(event){
     event.preventDefault();
     getAnimeByImageUpload(fileImageEl.files[0]);
 });
-
-function init(){
-    libraryItems = loadFromLocalStorage("library");
-}
 
 function getRandomAnime(){
     fetch("https://kitsu.io/api/edge/anime/" + Math.floor((Math.random() * 12000) + 1))
@@ -94,28 +84,6 @@ function getAnimeByName(searchName){
 function goToDisplay(showRawInfo){
     sessionStorage.setItem("rawShow", JSON.stringify(showRawInfo));
     location.assign("directory.html");
-}
-
-function addToLibrary(title, poster){
-    let newInfo = {title, poster};
-    libraryItems.push(newInfo);
-
-    saveToLocalStorage("library", libraryItems);
-}
-
-function saveToLocalStorage(type, toSave){
-    localStorage.setItem(type, JSON.stringify(toSave));
-}
-
-function loadFromLocalStorage(type){
-    let storedItem = JSON.parse(localStorage.getItem(type));
-
-    if(storedItem !== null){
-        return storedItem;
-    }
-    else{
-        console.log("Could not retrieve stored items!");
-    }
 }
 
 document.addEventListener('DOMContentLoaded', () => {

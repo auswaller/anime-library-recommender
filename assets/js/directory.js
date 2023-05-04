@@ -25,7 +25,6 @@ randomButtonEl.addEventListener("click", function(event){
 function addToLibrary(title, poster){
     let newInfo = {title, poster};
     libraryItems.push(newInfo);
-    console.log(libraryItems);
     saveToLocalStorage("library", libraryItems);
 }
 
